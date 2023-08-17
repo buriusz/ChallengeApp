@@ -1,79 +1,35 @@
-﻿/* var name = "Ewa";
-var sex = 'f'; // lub teź bool np. true ze jest kobieta a false mezczyzna lub na odwrót, albo string "kobieta" lub "mężczyzna"
-var age = 33;
+﻿using ChallengeApp;
 
-if (sex == 'f' && age < 30)
+Employee employee1 = new Employee("Adam", "Kowalski", 30);
+Employee employee2 = new Employee("Monika", "Zębocka", 22);
+Employee employee3 = new Employee("Zuzia", "Kawaler", 48);
+
+employee1.AddScore(5);
+employee1.AddScore(2);
+employee1.AddScore(1);
+
+employee2.AddScore(2);
+employee2.AddScore(5);
+employee2.AddScore(9);
+
+employee3.AddScore(11);
+employee3.AddScore(1);
+employee3.AddScore(1);
+
+List<Employee> employees = new List<Employee>()
+{ employee1, employee2, employee3 };
+
+
+int maxResult = -1;
+Employee employeeWithMaxResult = null;
+
+foreach (var employee in employees)
 {
-    Console.WriteLine("Kobieta poniżej 30 lat");
-}
-else if (name == "Ewa" && age == 33)
-{
-    Console.WriteLine("Ewa, lat 33");
-}
-else if (sex != 'f' && age < 18)
-{
-    Console.WriteLine($"Niepełnoletni Mężczyzna");
-}
-else
-{
-    Console.WriteLine("Nie jest to kobieta w wieku poniżej 30, nie jest to Ewa w wieku 30 lat a tym bardziej mężczyzna w wieku poniżej 18 lat");
-} */
-
-//// tablica
-//int[] grades = new int[5];
-//string[] dayOfWeeks = new string[7];
-//dayOfWeeks[0] = "poniedziałek";
-//dayOfWeeks[1] = "wtorek";
-//dayOfWeeks[2] = "środa";
-//dayOfWeeks[3] = "czwartek";
-//dayOfWeeks[4] = "piątek";
-//dayOfWeeks[5] = "sobota";
-//dayOfWeeks[6] = "niedziela";
-
-////Console.WriteLine(dayOfWeeks[6]);
-
-//for (var i = 0; i < dayOfWeeks.Length; i++)
-//{
-//    Console.WriteLine(dayOfWeeks[i]);
-//}
-
-//List<string> dayOfWeeks = new List<string>();
-//dayOfWeeks.Add("poniedziałek");
-//dayOfWeeks.Add("wtorek");
-//dayOfWeeks.Add("środa");
-//dayOfWeeks.Add("czwartek");
-//dayOfWeeks.Add("piątek");
-//dayOfWeeks.Add("sobota");
-//dayOfWeeks.Add("niedziela");
-
-//for (var i = 0;i < dayOfWeeks.Count; i++)
-//{
-//    Console.WriteLine(dayOfWeeks[i]);
-//}
-
-//foreach (var day in dayOfWeeks)
-//{
-//    Console.WriteLine(day);
-//}
-
-int number = 4566;
-string numberInString = number.ToString();
-char[] letters = numberInString.ToArray();
-int[] numbersCounter = new int[10];
-
-foreach (char letter in letters)
-{
-    int tmpLetter = letter - 48;
-    for (int i = 0; i < numbersCounter.Length; i++)
+    if (employee.Result > maxResult)
     {
-        if (tmpLetter == i)
-        {
-            numbersCounter[i]++;
-        }
+        maxResult = employee.Result;
+        employeeWithMaxResult = employee;
     }
 }
 
-for (var i = 0; i < 10; i++)
-{
-    Console.WriteLine(i + " => " + numbersCounter[i]);
-}
+Console.WriteLine(employeeWithMaxResult.Name + " "+ employeeWithMaxResult.Surname + ", age: " + employeeWithMaxResult.Age + " has " + employeeWithMaxResult.Result + " points.");
