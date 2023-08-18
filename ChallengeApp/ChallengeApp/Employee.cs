@@ -1,6 +1,6 @@
 ﻿namespace ChallengeApp
 {
-    internal class Employee
+    public class Employee
     {
         private List<int> score = new List<int>();
 
@@ -20,11 +20,16 @@
             this.score.Add(number);
         }
 
+        public void AddPenaltyScore(int number)
+        {
+            this.score.Add(-number);
+        }
+
         public int Result
         {
             get
             {
-                return this.score.Sum();
+                    return this.score.Sum();
             }
         }
     }
