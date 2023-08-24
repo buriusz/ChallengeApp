@@ -1,60 +1,57 @@
-
-
 namespace ChallengeApp.Tests
 {
-    public class Tests
+    public class EmployeeTests
     {
-
         [Test]
-        public void WhenUserCollectTwoScores_ShouldReturnCorrectResult()
+        public void WhenUserGivesOneZeroGrade_ShouldReturnZeroMinMaxAverageValue()
         {
-            // arrange
+            var employee = new Employee("Adam", "Dawidof");
+            employee.AddGrade(0);
 
-            var employee = new Employee("Adam", "Kowalski", 30);
-            employee.AddScore(5);
-            employee.AddScore(6);
+            var statistics = employee.GetStatistics();
 
-            // act
-            var result = employee.Result;
-
-            // assert
-            Assert.AreEqual(11, result);
+            Assert.AreEqual(0f, statistics.Min);
+            Assert.AreEqual(0f, statistics.Max);
+            Assert.AreEqual(0f, statistics.Average);
         }
 
         [Test]
-        public void WhenUserCollectThreeScores_ShouldReturnCorrectResult()
+        public void TestMinValue()
         {
-            // arrange
+            var employee = new Employee("Adam", "Dawidof");
+            employee.AddGrade(0);
+            employee.AddGrade(12);
+            employee.AddGrade(7);
 
-            var employee = new Employee("Adam", "Dawidof", 32);
-            employee.AddScore(5);
-            employee.AddPenaltyScore(11);
-            employee.AddScore(6);
+            var statistics = employee.GetStatistics();
 
-            // act
-            var result = employee.Result;
-
-            // assert
-            Assert.AreEqual(0, result);
+            Assert.AreEqual(0, statistics.Min);
         }
 
         [Test]
-        public void WhenUserCollectFiveScores_ShouldReturnCorrectResult()
+        public void TestMaxValue()
         {
-            // arrange
+            var employee = new Employee("Adam", "Dawidof");
+            employee.AddGrade(0);
+            employee.AddGrade(12);
+            employee.AddGrade(7);
 
-            var employee = new Employee("Adam", "Dawidof", 32);
-            employee.AddScore(5);
-            employee.AddPenaltyScore(2);
-            employee.AddScore(6);
-            employee.AddScore(1);
-            employee.AddPenaltyScore(8);
+            var statistics = employee.GetStatistics();
 
-            // act
-            var result = employee.Result;
+            Assert.AreEqual(12, statistics.Max);
+        }
 
-            // assert
-            Assert.AreEqual(2, result);
+        [Test]
+        public void TestAverageValue()
+        {
+            var employee = new Employee("Adam", "Dawidof");
+            employee.AddGrade(0);
+            employee.AddGrade(12);
+            employee.AddGrade(6);
+
+            var statistics = employee.GetStatistics();
+
+            Assert.AreEqual(6f, statistics.Average);
         }
     }
 }
