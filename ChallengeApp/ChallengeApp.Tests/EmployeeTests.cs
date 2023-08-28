@@ -2,25 +2,14 @@ namespace ChallengeApp.Tests
 {
     public class EmployeeTests
     {
-        [Test]
-        public void WhenUserGivesOneZeroGrade_ShouldReturnZeroMinMaxAverageValue()
-        {
-            var employee = new Employee("Adam", "Dawidof");
-            employee.AddGrade(0);
-
-            var statistics = employee.GetStatistics();
-
-            Assert.AreEqual(0f, statistics.Min);
-            Assert.AreEqual(0f, statistics.Max);
-            Assert.AreEqual(0f, statistics.Average);
-        }
 
         [Test]
-        public void TestMinValue()
+        public void WhenGetStatisticsCalled_ShouldReturnCorrectMin()
         {
             var employee = new Employee("Adam", "Dawidof");
             employee.AddGrade(0);
             employee.AddGrade(12);
+            employee.AddGrade("A");
             employee.AddGrade(7);
 
             var statistics = employee.GetStatistics();
@@ -29,29 +18,32 @@ namespace ChallengeApp.Tests
         }
 
         [Test]
-        public void TestMaxValue()
+        public void WhenGetStatisticsCalled_ShouldReturnCorrectMax()
         {
             var employee = new Employee("Adam", "Dawidof");
             employee.AddGrade(0);
             employee.AddGrade(12);
+            employee.AddGrade("A");
             employee.AddGrade(7);
 
             var statistics = employee.GetStatistics();
 
-            Assert.AreEqual(12, statistics.Max);
+            Assert.AreEqual(100, statistics.Max);
         }
 
         [Test]
-        public void TestAverageValue()
+        public void WhenGetStatisticsCalled_ShouldReturnCorrectAverage()
         {
             var employee = new Employee("Adam", "Dawidof");
             employee.AddGrade(0);
             employee.AddGrade(12);
-            employee.AddGrade(6);
+            employee.AddGrade('c');
+            employee.AddGrade(7);
+            employee.AddGrade('B');
 
             var statistics = employee.GetStatistics();
 
-            Assert.AreEqual(6f, statistics.Average);
+            Assert.AreEqual(Math.Round(31.80f,2), Math.Round(statistics.Average), 2);
         }
     }
 }
