@@ -1,15 +1,8 @@
-﻿using System.Diagnostics;
-using System.Net.NetworkInformation;
-
-namespace ChallengeApp
+﻿namespace ChallengeApp
 {
     public class Employee
     {
         private List<float> grades = new List<float>();
-
-        public Employee()
-        {
-        }
 
         public Employee(string name, string surname)
         {
@@ -26,40 +19,41 @@ namespace ChallengeApp
             if (grade >= 0 && grade <= 100)
             {
                 this.grades.Add(grade);
-            } else
+            }
+            else
             {
-                Console.WriteLine("Invalid grade value!");
+                throw new Exception("Invalid grade value. You can use numbers from 0 to 100.");
             }
         }
 
         public void AddGrade(string grade)
         {
-            
-            if (float.TryParse(grade, out float result))
-            {
-                this.AddGrade(result);
-            }
-            else if (grade.Length == 1)
+
+            if (grade.Length == 1)
             {
                 char.TryParse(grade, out char tmp);
                 this.AddGrade(tmp);
             }
+            else if (float.TryParse(grade, out float result))
+            {
+                this.AddGrade(result);
+            }
             else
             {
-                Console.WriteLine("String is not float!");
+                throw new Exception("String is not float!");
             }
         }
 
         public void AddGrade(int grade)
         {
-                float result = (float)grade;
-                this.AddGrade(result);
+            float result = (float)grade;
+            this.AddGrade(result);
         }
 
         public void AddGrade(long grade)
         {
-                float result = (float)grade;
-                this.AddGrade(result);
+            float result = (float)grade;
+            this.AddGrade(result);
         }
 
         public void AddGrade(double grade)
@@ -93,13 +87,11 @@ namespace ChallengeApp
                     this.grades.Add(20);
                     break;
                 default:
-                    Console.WriteLine("Wrong Letter");
-                    //this.grades.Add(0);
-                    break;
+                    throw new Exception("Wrong Letter. You can use: 'A', 'a', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e'");
             }
         }
 
-            public Statistics GetStatistics()
+        public Statistics GetStatistics()
         {
             var statistics = new Statistics();
             statistics.Average = 0;
@@ -108,9 +100,9 @@ namespace ChallengeApp
 
             foreach (var grade in this.grades)
             {
-                    statistics.Max = Math.Max(statistics.Max, grade);
-                    statistics.Min = Math.Min(statistics.Min, grade);
-                    statistics.Average += grade;
+                statistics.Max = Math.Max(statistics.Max, grade);
+                statistics.Min = Math.Min(statistics.Min, grade);
+                statistics.Average += grade;
             }
 
             statistics.Average /= this.grades.Count;

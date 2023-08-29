@@ -4,8 +4,7 @@ Console.WriteLine("Welcome to XYZ programm to evaluate Employees");
 Console.WriteLine("===========================================");
 Console.WriteLine();
 
-
-var employee = new Employee();
+var employee = new Employee("Adam", "Kamizelich");
 
 while (true)
 {
@@ -15,14 +14,23 @@ while (true)
     {
         break;
     }
-    else
+
+    try
     {
         employee.AddGrade(input);
     }
+    catch (Exception e)
+    {
+        Console.WriteLine($"Exception catched: {e.Message}");
+    }
+    //else
+    //{
+    //    employee.AddGrade(input);
+    //}
 }
 
 var statistics = employee.GetStatistics();
 Console.WriteLine($"Average: {statistics.Average:N2}");
 Console.WriteLine($"Min: {statistics.Min}");
 Console.WriteLine($"Max: {statistics.Max}");
-Console.WriteLine($"Ocena: {statistics.AverageLetter}");
+Console.WriteLine($"Grade: {statistics.AverageLetter}");
