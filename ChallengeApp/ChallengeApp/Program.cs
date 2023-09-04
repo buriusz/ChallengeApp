@@ -1,8 +1,8 @@
 ﻿using ChallengeApp;
 
 Console.WriteLine("Welcome to XYZ programm to evaluate Employees");
-Console.WriteLine("===========================================");
-Console.WriteLine();
+Console.WriteLine("=============================================");
+Console.WriteLine("To exit type 'q' and confirm");
 
 var employee = new Employee("Adam", "Kamizelich");
 
@@ -23,10 +23,6 @@ while (true)
     {
         Console.WriteLine($"Exception catched: {e.Message}");
     }
-    //else
-    //{
-    //    employee.AddGrade(input);
-    //}
 }
 
 var statistics = employee.GetStatistics();
