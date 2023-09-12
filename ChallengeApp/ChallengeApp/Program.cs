@@ -4,9 +4,9 @@ Console.WriteLine("Welcome to XYZ programm to evaluate Employees");
 Console.WriteLine("=============================================");
 Console.WriteLine("To exit type 'q' and confirm");
 
-var employee = new Employee("Adam", "Kamizelich");
-var supervisor = new Supervisor("Zenon", "Brzeczeszczykiewicz");
+var employee = new EmployeeInFile("Adam", "Kamizelich");
 
+//employee.AddGrade(100.05f);
 while (true)
 {
     Console.WriteLine("Add next grade of an employee: ");
@@ -18,7 +18,7 @@ while (true)
 
     try
     {
-        supervisor.AddGrade(input);
+        employee.AddGrade(input);
     }
     catch (Exception e)
     {
@@ -26,8 +26,9 @@ while (true)
     }
 }
 
-var statistics = supervisor.GetStatistics();
+
+var statistics = employee.GetStatistics();
 Console.WriteLine($"Average: {statistics.Average:N2}");
-Console.WriteLine($"Min: {statistics.Min}");
-Console.WriteLine($"Max: {statistics.Max}");
+Console.WriteLine($"Min: {statistics.Min:N2}");
+Console.WriteLine($"Max: {statistics.Max:N2}");
 Console.WriteLine($"Grade: {statistics.AverageLetter}");
