@@ -5,8 +5,15 @@ Console.WriteLine("=============================================");
 Console.WriteLine("To exit type 'q' and confirm");
 
 var employee = new EmployeeInFile("Adam", "Kamizelich");
+var employee1 = new EmployeeInMemory("Adam", "Kamizelich");
+employee.GradeAdded += EmployeeGradeAdded;
 
-//employee.AddGrade(100.05f);
+void EmployeeGradeAdded(object sender, EventArgs args)
+{
+    Console.WriteLine("New grade added!");
+};
+
+
 while (true)
 {
     Console.WriteLine("Add next grade of an employee: ");
